@@ -1,0 +1,29 @@
+.heading
+{
+    background-color: aquamarine;
+    box-shadow: 3px 3px 8px rgba(127, 255, 249, 0.8);
+    text-align: center;
+   
+    padding: 5px;
+    margin: 30px 75px;
+    border-radius: 1cm;
+}
+
+.gallery
+{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+img
+{
+    width: 30%;
+    height: 30%;
+
+
+    margin: 12px;
+    border-radius: 1cm;
+
+    box-shadow: 2px 2px 12px ;
+}
