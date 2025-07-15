@@ -1,28 +1,37 @@
+/* General Body and Font Styles */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
     background-color: #f4f4f4;
     color: #333;
+    line-height: 1.6; /* Improves readability */
 }
 
+/* Header Styling */
 header {
     background-color: #333;
     color: white;
     padding: 1rem 0;
     text-align: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    position: sticky; /* Makes header stick to top on scroll */
+    top: 0;
+    z-index: 1000; /* Ensures header stays above content */
 }
 
 header h1 {
     margin: 0;
     padding-bottom: 10px;
+    font-size: 1.8rem;
 }
 
+/* Navigation Styling */
 nav {
     display: flex;
     justify-content: center;
-    gap: 20px;
-    flex-wrap: wrap; /* Allows nav items to wrap on smaller screens */
+    gap: 15px;
+    flex-wrap: wrap;
     padding: 10px 0;
 }
 
@@ -30,48 +39,62 @@ nav a {
     color: white;
     text-decoration: none;
     font-weight: bold;
-    padding: 5px 10px;
+    padding: 6px 12px;
     border-radius: 5px;
     transition: background-color 0.3s ease;
+    font-size: 0.9rem;
 }
 
 nav a:hover {
     background-color: #555;
 }
 
+/* Main Content Area */
 main {
-    padding: 20px;
+    padding: 15px;
     max-width: 1200px;
-    margin: 20px auto;
+    margin: 15px auto;
     background-color: white;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
 }
 
+/* Category Section Styling */
 .category {
-    margin-bottom: 40px;
-    padding-top: 20px; /* For smooth scrolling when clicking nav links */
+    margin-bottom: 30px;
+    padding-top: 15px;
 }
 
 .category h2 {
     text-align: center;
     color: #007bff;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     border-bottom: 2px solid #eee;
-    padding-bottom: 10px;
+    padding-bottom: 8px;
+    font-size: 1.5rem;
 }
 
+/* Gallery Grid for Images (Core of the layout for mixed orientations) */
 .gallery-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive grid */
-    gap: 15px;
-    justify-content: center;
+    /* On mobile, aim for 2 columns. Images will take their natural height. */
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 10px; /* Small gap for tighter look on mobile */
+    align-items: start; /* Align items to the start of their grid cell */
 }
 
 .gallery-grid img {
     width: 100%;
-    height: 200px; /* Fixed height for consistency */
-    object-fit: cover; /* Ensures images cover the area without distortion */
+    /* Key Change: Remove fixed height. Images will now scale based on their width. */
+    /* height: auto; is implicit when height is not set, but good to be explicit */
+    height: auto;
+    /*
+     * object-fit: cover; will crop images to fill the space.
+     * object-fit: contain; will show the full image, but may leave empty space (letterboxing/pillarboxing).
+     * Choose based on your preference! 'cover' often looks more seamless in a grid.
+     */
+    object-fit: cover;
+    display: block; /* Removes extra space below images */
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
@@ -82,34 +105,40 @@ main {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
+/* Footer Styling */
 footer {
     text-align: center;
-    padding: 20px;
+    padding: 15px;
     background-color: #333;
     color: white;
-    margin-top: 40px;
+    margin-top: 30px;
+    font-size: 0.85rem;
 }
 
-/* Basic responsiveness for smaller screens */
-@media (max-width: 768px) {
+/* Media Queries for Responsiveness (Desktop/Larger Tablets) */
+@media (min-width: 600px) { /* Tablets and larger phones, 3 columns */
     .gallery-grid {
         grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 15px;
     }
-    main {
-        padding: 10px;
-        margin: 10px auto;
+    header h1 {
+        font-size: 2.2rem;
+    }
+    nav a {
+        font-size: 1rem;
+    }
+    .category h2 {
+        font-size: 1.8rem;
     }
 }
 
-@media (max-width: 480px) {
-    .gallery-grid img {
-        height: 150px;
+@media (min-width: 900px) { /* Desktops/Larger Screens, 4+ columns */
+    .gallery-grid {
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 20px;
     }
-    header h1 {
-        font-size: 1.8rem;
-    }
-    nav a {
-        padding: 3px 8px;
-        font-size: 0.9rem;
+    main {
+        padding: 20px;
+        margin: 20px auto;
     }
 }
